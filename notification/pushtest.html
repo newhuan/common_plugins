@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--<script src="./push.js"></script>-->
+    <script src="./push.min.js"></script>
+    <script>
+        var hiddenProperty = 'hidden' in document ? 'hidden' :
+            'webkitHidden' in document ? 'webkitHidden' :
+                'mozHidden' in document ? 'mozHidden' :
+                    null;
+        var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+        var onVisibilityChange = function(){
+            if (!document[hiddenProperty]) {
+                console.log('页面非激活');
+                alert("页面非激活")
+            }else{
+//                debugger
+                console.log('页面激活')
+            }
+        }
+        document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+        Push.create('Hello World!')
+        Push.create("Hello world!", {
+            body: "How's it hangin'?",
+            icon: '/icon.png',
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
+    </script>
+</body>
+</html>
