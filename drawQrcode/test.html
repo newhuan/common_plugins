@@ -11,6 +11,10 @@
     <script>
 
         $('#qrcode').remove("canvas").qrcode({width: 64,height: 64,text: "size doesn't matter"});
+        setTimeout(function () {
+            $('#qrcode canvas').remove();
+        }, 1000)
+
     </script>
 </body>
 </html>
