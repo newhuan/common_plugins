@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="http://blog.liuxianan.com/pinyinjs.html" target="_blank">返回原文</a>
+    <a href="http://github.com/liuxianan/pinyinjs/" target="_blank">github地址</a>
+
+    <script type="text/javascript" src="dict/pinyin_dict_notone.js"></script>
+    <script type="text/javascript" src="dict/pinyin_dict_withtone.js"></script>
+    <script type="text/javascript" src="pinyinUtil.js"></script>
+    <script>
+//        alert()
+console.log(pinyinUtil.getPinyin("我", ' ', true, true)[0]);
+console.log(pinyinUtil.getPinyin("我", ' ', false, true)[0]);//第二个参数表示是否带声调
+console.log(pinyinUtil.getFirstLetter("我", true)[0]);//最后一个参数表示是否支持多音字
+    </script>
+    
+</body>
+</html>
