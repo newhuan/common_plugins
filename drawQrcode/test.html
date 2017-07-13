@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="qrcode"></div>
+    <script src="../jquery-3.1.1.min.js"></script>
+    <script src="jquery.qrcode.min.js"></script>
+    <script>
+
+        $('#qrcode').remove("canvas").qrcode({width: 64,height: 64,text: "size doesn't matter"});
+    </script>
+</body>
+</html>

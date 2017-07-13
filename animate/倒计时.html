@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        var codeState = false;
+        function animateGetCode() {
+            if(!codeState){
+                return;
+            }
+            let $getCode = $('#get-code');
+            disableGetCode();
+            $getCode.html("60s");
+            let time = 59;
+            let id = setInterval(function () {
+                if(time >= 0){
+                    $getCode.html(time + "s");
+                    time -= 1;
+                }else {
+                    clearInterval(id);
+                    recoverGetCode();
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
