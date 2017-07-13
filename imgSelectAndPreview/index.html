@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		#choose{
+		width: 186px;
+		height: 108px;
+		line-height: 108px;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		cursor: pointer;
+		text-align : center;
+		}
+		#cvs{
+		width : 186px;
+		height : 108px;
+		}
+	</style>
+</head>
+<body>
+<div class = 'container img-preview'>
+	<div id="choose" >点击选择</div>
+	<canvas id = "cvs" width="preview_data.width" height="preview_data.height" :style="style_cvs"></canvas>
+</div>
+<script>
+	var ipt = '1';
+    function choose (e) {
+//        console.log(this === e, this, e);
+        console.log("choose",ipt);
+        ipt = document.createElement('input');
+        ipt.addEventListener('change', readFile, false);
+        ipt.type = 'file';
+        ipt.accept = 'image/*';
+        ipt.click();
+//        e.target.style.opacity = 0.1;
+        this.style.opacity = 0.1;
+    }
+    function readFile(){
+        console.log('readFile',ipt);
+        let that = this;
+        let file = ipt.files[0];//获取input输入的图片
+        let name = file.name;
+        let reader = new FileReader();
+        console.log(name);
+        if(!/image\/\w+/.test(file.type)){
+            alert("请确保文件为图像类型");
+            return false;
+        }//判断是否图片，在移动端由于浏览器对调用file类型处理不同，虽然加了accept = 'image/*'，但是还要再次判断
+        reader.readAsDataURL(file);//转化成base64数据类型
+        reader.onload = function(){
+            console.log('reader.onload');
+            drawToCanvas(this.result);
+            console.log(this)
+        }
+    }
+    function drawToCanvas(imgData){
+        console.log("drawToCanvas");
+        let cvs = document.querySelector('#cvs');
+        cvs.width = 186;
+        cvs.height = 108;
+        let ctx = cvs.getContext('2d');
+        let img = new Image;
+        img.src = imgData;
+        console.log(img);
+        img.onload = function(){//必须onload之后再画
+            console.log("img::",img.width,img.height);
+            ctx.drawImage(img, 0, 0, img.width, img.height,     // source rectangle
+                0, 0, cvs.width, cvs.height); // destination rectangle
+			console.log(cvs.toDataURL());//获取canvas base64数据
+        };
+    }
+    let choose_btn = document.querySelector('#choose');
+    choose_btn.onclick = choose;
+</script>
+</body>
+</html>

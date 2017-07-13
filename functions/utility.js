@@ -267,7 +267,7 @@ var dateFormat = (function () {
 })();
 
 //regexp
-    
+
 //	验证QQ号、手机号、Email、中文、邮编、身份证、IP地址
 var myRegExp = {
         isPwd: function (str, low, hig) {
