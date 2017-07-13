@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script src="utility.js"></script>
+    <script>
+        console.log(getUrlParam("_ijt"));
+
+        console.log(getUrlParam2("_ijt"));
+
+        console.log(GetQueryString("_ijt"));
+
+        console.log(GetRequest()["_ijt"]);
+
+        setCookie('uid', "me");
+
+        console.log(readCookie('uid'));
+
+        delCookie('uid');
+
+        console.log(transTime(new Date(1499053797343)));
+
+        var arr = [1, 1, 2, 3,'3'];
+
+        console.log(arr.contains(1), arr.contains("1"));
+
+        console.log(arr.uniquelize());
+
+        arr.each(function (val, index) {
+            console.log(index, val);
+        });
+
+        var arr2 = [3, 4];
+        console.log(arr, arr2, Array.complement(arr, arr2));
+
+        console.log(arr, arr2, Array.intersect(arr, arr2));
+
+        console.log(arr, arr2, Array.minus(arr, arr2), Array.minus(arr2, arr));
+
+        console.log(arr, arr2, Array.union(arr, arr2));
+
+    </script>
+    
+</body>
+</html>
