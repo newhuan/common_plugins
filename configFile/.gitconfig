@@ -1,0 +1,16 @@
+[color]
+	ui = auto
+[core]
+	autocrlf = true
+	quotepath = false
+[http]
+	sslVerify = false
+[push]
+	default = simple
+[user]
+	name = newhuan
+	email = newhuan2017@gmail.com
+[credential]
+	helper = store
+[gui]
+	encoding = utf-8
