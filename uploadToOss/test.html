@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <input type="file" id="file"/>
+    <script src="../md5/md5.js"></script>
+    <script src="../jquery-3.1.1.min.js"></script>
+    <script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+    <script>
+        var bucket = "mituresprd";
+
+        var client = new OSS.Wrapper({
+            region : 'oss-cn-hangzhou',
+            accessKeyId : 'LTAI2lG5tAHM7VyU',
+            accessKeySecret : 'zcj3BwZKeQLm0Mnb2HsI0ZcnPhENUj',
+            bucket : 'mituresprd'
+        });
+
+        document.getElementById("file").addEventListener('change', on_click_upload_file);
+
+        function on_click_upload_file(){
+            var f = document.getElementById("file").files[0],
+                name = f.name;
+//            var val= document.getElementById("file").value;
+            var suffix = name.substr(name.lastIndexOf("."));//获取 .jpg 这样的后缀
+            var fileName = name.substr(0, name.lastIndexOf("."));//获取后缀前的文件名
+            var obj = Date.now();
+            var storeAs = 'images/'+ MD5("15942696014" + "mitures") + '/' + obj + '/' +name;  //命名空间
+            client.multipartUpload(storeAs, f).then(function (result) {
+                console.log(result); //--->返回对象
+                console.log(result.url); //--->返回链接
+                if(!!result.url){
+                    console.log(result.url);
+                }else {
+                    var url = "http://" + bucket + ".oss-cn-hangzhou.aliyuncs.com/" + result.name;
+                    console.log(url);
+                }
+
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    </script>
+    
+</body>
+</html>
