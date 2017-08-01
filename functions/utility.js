@@ -537,3 +537,14 @@ var myRegExp = {
 //	8.1到3个数字,后面跟着任意个 逗号+3个数字,逗号成为可选,而不是必须：^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(.[0-9]{1,2})?$
 //	备注：这就是最终结果了,别忘了"+"可以用"*"替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里
 
+function checkJSON(msg) {
+    if(!msg){
+        //|| typeof msg === 'number' || typeof msg === 'boolean' || typeof msg === 'symbol'
+        return false;
+    }
+    var data;
+    if(typeof msg === "string"){
+        data = JSON.parse(msg);
+    }
+    return data;
+}
