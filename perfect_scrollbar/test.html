@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./plugin/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="./plugin/css/prettify.css">
+    <script src="../jquery-3.1.1.min.js"></script>
+    <script src="./plugin/js/perfect-scrollbar.min.js"></script>
+    <script src="./plugin/js/prettify.js"></script>
+    <style>
+        #container{
+            height:100px;
+            width:100px;
+            /*overflow-y: scroll;*/
+            /*overflow-x: hidden;*/
+            overflow: auto;
+            margin: 0 auto;
+            position: relative;
+        }
+        .content{
+            height:400px;
+            width: 100px;
+            background:linear-gradient(to top, white, black);
+        }
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <div class="content"></div>
+    </div>
+    <script>
+         Ps.initialize($('#container').get(0));
+    </script>
+</body>
+</html>
