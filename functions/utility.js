@@ -542,9 +542,17 @@ function checkJSON(msg) {
         //|| typeof msg === 'number' || typeof msg === 'boolean' || typeof msg === 'symbol'
         return false;
     }
-    var data;
+    var data,
+        flag = true;
     if(typeof msg === "string"){
-        data = JSON.parse(msg);
+        try {
+            data = JSON.parse(msg);
+        }catch(e) {
+            flag = false;
+        }
+    }
+    if(!flag){
+        return false;
     }
     return data;
 }
