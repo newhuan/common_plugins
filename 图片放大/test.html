@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./plugin/css/lightgallery.css">
+    <script src="../jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+    <script src="./plugin/js/lightgallery-all.min.js"></script>
+    <script src="./plugin/js/jquery.mousewheel.min.js"></script>
+</head>
+<body>
+    <div class="fs-item-photo-layout clear">
+        <div class="fs-item-img-wrapper fs-item-img-single-wrapper" data-src="./img/2-375.jpg">
+            <img class="img-single" src="./img/2-375.jpg"><span></span>
+        </div>
+        <div class="fs-item-img-wrapper fs-item-img-single-wrapper" data-src="./img/1-375.jpg">
+            <img class="img-single" src="./img/1-375.jpg"><span></span>
+        </div>
+        <div class="fs-item-img-wrapper fs-item-img-single-wrapper" data-src="./img/4-375.jpg">
+            <img class="img-single" src="./img/4-375.jpg"><span></span>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $('.fs-item-photo-layout').lightGallery();
+        });
+    </script>
+</body>
+</html>
