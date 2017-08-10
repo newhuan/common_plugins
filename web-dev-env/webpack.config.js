@@ -9,6 +9,18 @@
  * dest floder can be built by webpack, so it is unnecessary to push it, add "\dest" in .gitignore file
  * however, if the file must be released, dest floder must be pushed;
  */
+/**
+ * jquery 1.9.1 and older can't be used
+ * style-loader does not support ie7(oldest is ie8)
+ * compile scss with webstorm
+ * import jq1.9.1 with cnd
+ * webpack is only used to compile js in es3 and run in ie5
+ * also used to uglify js files and get source map
+ * watch is too expensive , close it
+ * dev-server is not necessary with webstorm
+ * now es6 can be run in ie5
+ * awesome!
+*/
 var path = require('path');
 var webpack = require('webpack');
 // var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
