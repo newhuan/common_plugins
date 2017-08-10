@@ -4,11 +4,11 @@
 //
 /**
  * webpack-dev-server, uglifyjs-webpack-plugin => not need, can be uninstalled
-*/
+ */
 /**
  * dest floder can be built by webpack, so it is unnecessary to push it, add "\dest" in .gitignore file
  * however, if the file must be released, dest floder must be pushed;
-*/
+ */
 var path = require('path');
 var webpack = require('webpack');
 // var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
@@ -59,7 +59,7 @@ module.exports = {
             }
         ]
     },
-    watch: true,
+    watch: false,
     watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
@@ -69,9 +69,19 @@ module.exports = {
         new webpack.ProvidePlugin({//在全局设置$为jquery
             jQuery: "jquery",
             $: "jquery"
-            }),
+        }),
         new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true//set false before release
+            sourceMap: true,//set false before release
+            compress: {
+                warnings: false,
+                screw_ie8: false
+            },
+            mangle: {
+                screw_ie8: false
+            },
+            output: {
+                screw_ie8: false
+            }
         })
         // new UglifyJSPlugin({
         //     test: /\.jsx?$/i,

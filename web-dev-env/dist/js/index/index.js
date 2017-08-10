@@ -21,7 +21,7 @@ if (typeof DEBUG !== "undefined") {
 }
 
 console.log(b, "223");
-var my = new MT();
+var my = new MT.MT();
 
 async function test() {
     //await waitting for the resolve value

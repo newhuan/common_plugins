@@ -19,4 +19,6 @@ MT.prototype.test2 = modules.test2;
 
 
 
-module.exports = MT;
+module.exports = {
+    MT
+};

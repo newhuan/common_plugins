@@ -13,7 +13,7 @@ also can compile scss file to css,
 handler jpg and png files' url is also ok,
 
 
-I also make window.$ connect to jQuery,and can be used in all js files
+I also make window.$ connect to jQuery(version 1.11.3),and can be used in all js files
 
 
 also have ugilfy and source map file,remember to set false before release
@@ -25,7 +25,7 @@ watch is set true,this means I don't need to run shell every time I changes the 
 async is also being change to generator
 
 
-now, I can use es6 in the fucking ie6,awesome right?
+now, I can use es6 in ie8(fuck ie7,ie6,ie5),awesome right?
 
 
 usage:
