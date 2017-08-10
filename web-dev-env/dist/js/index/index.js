@@ -3,7 +3,7 @@
 import CONFIG from "../public/CONFIG.js";
 import MT from "./init";
 // import $ from "jquery";
-import "../../css/index/index.scss"
+// import "../../css/index/indexc.scss"
 
 window.DEBUG = CONFIG.DEBUG;
 window.ROOT = CONFIG.ROOT;

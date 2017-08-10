@@ -1,4 +1,4 @@
-import modules from "./modules/test"
+import modules from "./parts/test"
 
 var MT = function () {
     this.testParam = "Hello World";

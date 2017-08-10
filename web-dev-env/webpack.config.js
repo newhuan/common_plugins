@@ -37,10 +37,6 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.css$/,
-                loader: 'style-loader!css-loader'
-            },
-            {
                 test: /\.jsx?$/,
                 loader: "babel-loader",
                 exclude: /(node_modules|bower_components)/,
@@ -48,15 +44,19 @@ module.exports = {
                     presets: ['es2015']
                 }
             },
-            {//compile scss
-                test: /\.scss$/,
-                include: __dirname + "\\dist\\css\\",
-                loader: "style-loader!css-loader!sass-loader"
-            },
-            {//url-handler
-                test: /\.(png|jpg)$/,
-                loader: 'url-loader?limit=8192'
-            }
+            // {
+            //     test: /\.css$/,
+            //     loader: 'style-loader!css-loader'
+            // },
+            // {//compile scss
+            //     test: /\.scss$/,
+            //     include: __dirname + "\\dist\\css\\",
+            //     loader: "style-loader!css-loader!sass-loader"
+            // },
+            // {//url-handler
+            //     test: /\.(png|jpg)$/,
+            //     loader: 'url-loader?limit=8192'
+            // }
         ]
     },
     watch: false,
@@ -66,10 +66,10 @@ module.exports = {
     },
     devtool: "source-map",//delete before release
     plugins: [
-        new webpack.ProvidePlugin({//在全局设置$为jquery
-            jQuery: "jquery",
-            $: "jquery"
-        }),
+        // new webpack.ProvidePlugin({//在全局设置$为jquery
+        //     jQuery: "jquery",
+        //     $: "jquery"
+        // }),
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,//set false before release
             compress: {

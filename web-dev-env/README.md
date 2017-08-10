@@ -28,6 +28,20 @@ async is also being change to generator
 now, I can use es6 in ie8(fuck ie7,ie6,ie5),awesome right?
 
 
+above is awesome? no!!! no!!! no!!!
+
+I use webstorm to compile scss file, use cdn to import jq,
+
+
+watch is to expensive,so I close it.
+
+
+Now! I! can! run! async! in! ie5!
+
+
+I felt that Virgin Mary's breast is in my hands!
+
+
 usage:
 
 ```shell
