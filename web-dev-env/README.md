@@ -4,7 +4,7 @@
 web develop environment
 
 
-this can compile es6 to es5 with poiyflly,
+this can compile es6 to es5 with polyfill,
 
 
 also can compile scss file to css,
@@ -20,6 +20,9 @@ also have ugilfy and source map file,remember to set false before release
 
 
 watch is set true,this means I don't need to run shell every time I changes the js files
+
+
+async is also being change to generator
 
 
 now, I can use es6 in the fucking ie6,awesome right?
