@@ -2,24 +2,24 @@
  * Created by xox on 2017/7/13.
  */
 /*************** type  *********************/
-function isNull(parm){
+function isNull(parm) {
     return !parm && typeof parm === 'object';
 }
 
-function isUndefined(parm){
+function isUndefined(parm) {
     return typeof parm === 'undefined';
 }
 
 //reverse a string
 function reverseString(string) {
-    if(typeof string !== 'string'){
+    if (typeof string !== 'string') {
         return false
     }
 
     // Step 1: deal with combining marks and astral symbols (surrogate pairs)
     string = string
     // Swap symbols with their combining marks so the combining marks go first
-        .replace(/(<%= allExceptCombiningMarks %>)(<%= combiningMarks %>+)/g, function($0, $1, $2) {
+        .replace(/(<%= allExceptCombiningMarks %>)(<%= combiningMarks %>+)/g, function ($0, $1, $2) {
             // Reverse the combining marks so they will end up in the same order
             // later on (after another round of reversing)
             return reverseString($2) + $1;
@@ -46,12 +46,15 @@ function reverseString(string) {
 /************************************/
 /************************************/
 /**************** search url param********************/
+
 /************************************/
 function getUrlParam(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
     var r = window.location.search.substr(1).match(reg); //匹配目标参数
-    if (r !== null) return unescape(r[2]);return null; //返回参数值
+    if (r !== null) return unescape(r[2]);
+    return null; //返回参数值
 }
+
 function GetRequest() {
     var url = location.search; //获取url中"?"符后的字串
     var theRequest = new Object();
@@ -79,14 +82,18 @@ function getUrlParam2(name) {
     }
     return theRequest[name];
 }
+
 function GetQueryString(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)","i");
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
-    if (r!=null) return (r[2]); return null;
+    if (r != null) return (r[2]);
+    return null;
 }
+
 /************************************/
 /****************cookie********************/
 /************************************/
+
 //写cookies
 function setCookie(name, value) {
     var days = 1;
@@ -113,6 +120,7 @@ function delCookie(name) {
         document.cookie = name + "=" + cval + ";expires=" + (new Date(0)).toGMTString();
     }
 }
+
 /************************************/
 var _$encode = function (_map, _content) {
     _content = '' + _content;
@@ -191,11 +199,15 @@ Array.complement = function (a, b) {
 };
 //两个数组的交集
 Array.intersect = function (a, b) {
-    return a.uniquelize().each(function (o) { return b.contains(o) ? o : null });
+    return a.uniquelize().each(function (o) {
+        return b.contains(o) ? o : null
+    });
 };
 //两个数组的差集
 Array.minus = function (a, b) {
-    return a.uniquelize().each(function (o) { return b.contains(o) ? null : o });
+    return a.uniquelize().each(function (o) {
+        return b.contains(o) ? null : o
+    });
 };
 //两个数组并集
 Array.union = function (a, b) {
@@ -266,7 +278,7 @@ var transTime2 = (function () {
  * @return string
  */
 var dateFormat = (function () {
-    var _map = { i: !0, r: /\byyyy|yy|MM|cM|eM|M|dd|d|HH|H|mm|ms|ss|m|s|w|ct|et\b/g },
+    var _map = {i: !0, r: /\byyyy|yy|MM|cM|eM|M|dd|d|HH|H|mm|ms|ss|m|s|w|ct|et\b/g},
         _12cc = ['上午', '下午'],
         _12ec = ['A.M.', 'P.M.'],
         _week = ['日', '一', '二', '三', '四', '五', '六'],
@@ -313,156 +325,156 @@ var dateFormat = (function () {
 
 //	验证QQ号、手机号、Email、中文、邮编、身份证、IP地址
 var myRegExp = {
-        isPwd: function (str, low, hig) {
-            var regPwd = new RegExp('^[!"#$%&\'\(\)*+,-./0-9:;<=>?@A-Z[\\]^_`a-z{|}~]{' + low + ',' + hig + '}$');
-            if(this.isNumber(str)){
-                return false;
-            }else {
-                return regPwd.test(str);
-            }
-        },
-        // 检查字符串是否为合法QQ号码
-        isQQ: function(str) {
-            // 1 首位不能是0  ^[1-9]
-            // 2 必须是 [5, 11] 位的数字  \d{4, 9}
-            var reg = /^[1-9][0-9]{4,9}$/gim;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log('QQ号码格式输入正确');
-            //     return true;
-            // } else {
-            //     console.log('请输入正确格式的QQ号码');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法手机号码
-        isPhone: function(str) {
-            var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[579]|17[0135678])[0-9]{8}$/;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log('手机号码格式输入正确');
-            //     return true;
-            // } else {
-            //     console.log('请输入正确格式的手机号码');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法Email地址
-        isEmail: function(str) {
-            var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-            // var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log('Email格式输入正确');
-            //     return true;
-            // } else {
-            //     console.log('请输入正确格式的Email');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否是数字
-        isNumber: function(str) {
-            var reg = /^\d+$/;
-            return reg.test(str);
-        },
-        // 去掉前后空格
-        trim: function(str) {
-            var reg = /^\s+|\s+$/g;
-            return str.replace(reg, '');
-        },
-        // 检查字符串是否存在中文
-        isChinese: function(str) {
-            var reg = /[\u4e00-\u9fa5]/gm;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log(str + ' 中存在中文');
-            //     return true;
-            // } else {
-            //     console.log(str + ' 中不存在中文');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法邮政编码
-        isPostcode: function(str) {
-            // 起始数字不能为0，然后是5个数字  [1-9]\d{5}
-            var reg = /^[1-9]\d{5}$/g;
-            return reg.test(str);
-            // var reg = /^[1-9]\d{5}(?!\d)$/;
-            // if (reg.test(str)) {
-            //     console.log(str + ' 是合法的邮编格式');
-            //     return true;
-            // } else {
-            //     console.log(str + ' 是不合法的邮编格式');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法身份证号码
-        isIDcard: function(str) {
-            var reg = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log(str + ' 是合法的身份证号码');
-            //     return true;
-            // } else {
-            //     console.log(str + ' 是不合法的身份证号码');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法URL
-        isURL: function(str) {
-            var reg = /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log(str + ' 是合法的URL');
-            //     return true;
-            // } else {
-            //     console.log(str + ' 是不合法的URL');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法日期格式 yyyy-mm-dd
-        isDate: function(str) {
-            var reg = /^[1-2][0-9][0-9][0-9][-/\s][0-1]{0,1}[0-9][-/\s][0-3]{0,1}[0-9]$/;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log(str + ' 是合法的日期格式');
-            //     return true;
-            // } else {
-            //     console.log(str + ' 是不合法的日期格式，yyyy-mm-dd');
-            //     return false;
-            // }
-        },
-        // 检查字符串是否为合法IP地址
-        isIP: function(str) {
-            // 1.1.1.1  四段  [0 , 255]
-            // 第一段不能为0
-            // 每个段不能以0开头
-            //
-            // 本机IP: 58.50.120.18 湖北省荆州市 电信
-            var reg = /^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}$/gi;
-            return reg.test(str);
-            // if (reg.test(str)) {
-            //     console.log(str + ' 是合法的IP地址');
-            //     return true;
-            // } else {
-            //     console.log(str + ' 是不合法的IP地址');
-            //     return false;
-            // }
+    isPwd: function (str, low, hig) {
+        var regPwd = new RegExp('^[!"#$%&\'\(\)*+,-./0-9:;<=>?@A-Z[\\]^_`a-z{|}~]{' + low + ',' + hig + '}$');
+        if (this.isNumber(str)) {
+            return false;
+        } else {
+            return regPwd.test(str);
         }
+    },
+    // 检查字符串是否为合法QQ号码
+    isQQ: function (str) {
+        // 1 首位不能是0  ^[1-9]
+        // 2 必须是 [5, 11] 位的数字  \d{4, 9}
+        var reg = /^[1-9][0-9]{4,9}$/gim;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log('QQ号码格式输入正确');
+        //     return true;
+        // } else {
+        //     console.log('请输入正确格式的QQ号码');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法手机号码
+    isPhone: function (str) {
+        var reg = /^(0|86|17951)?(13[0-9]|15[012356789]|18[0-9]|14[579]|17[0135678])[0-9]{8}$/;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log('手机号码格式输入正确');
+        //     return true;
+        // } else {
+        //     console.log('请输入正确格式的手机号码');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法Email地址
+    isEmail: function (str) {
+        var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+        // var reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log('Email格式输入正确');
+        //     return true;
+        // } else {
+        //     console.log('请输入正确格式的Email');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否是数字
+    isNumber: function (str) {
+        var reg = /^\d+$/;
+        return reg.test(str);
+    },
+    // 去掉前后空格
+    trim: function (str) {
+        var reg = /^\s+|\s+$/g;
+        return str.replace(reg, '');
+    },
+    // 检查字符串是否存在中文
+    isChinese: function (str) {
+        var reg = /[\u4e00-\u9fa5]/gm;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log(str + ' 中存在中文');
+        //     return true;
+        // } else {
+        //     console.log(str + ' 中不存在中文');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法邮政编码
+    isPostcode: function (str) {
+        // 起始数字不能为0，然后是5个数字  [1-9]\d{5}
+        var reg = /^[1-9]\d{5}$/g;
+        return reg.test(str);
+        // var reg = /^[1-9]\d{5}(?!\d)$/;
+        // if (reg.test(str)) {
+        //     console.log(str + ' 是合法的邮编格式');
+        //     return true;
+        // } else {
+        //     console.log(str + ' 是不合法的邮编格式');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法身份证号码
+    isIDcard: function (str) {
+        var reg = /^(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])((\d{4})|\d{3}[Xx])$)$/;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log(str + ' 是合法的身份证号码');
+        //     return true;
+        // } else {
+        //     console.log(str + ' 是不合法的身份证号码');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法URL
+    isURL: function (str) {
+        var reg = /^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log(str + ' 是合法的URL');
+        //     return true;
+        // } else {
+        //     console.log(str + ' 是不合法的URL');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法日期格式 yyyy-mm-dd
+    isDate: function (str) {
+        var reg = /^[1-2][0-9][0-9][0-9][-/\s][0-1]{0,1}[0-9][-/\s][0-3]{0,1}[0-9]$/;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log(str + ' 是合法的日期格式');
+        //     return true;
+        // } else {
+        //     console.log(str + ' 是不合法的日期格式，yyyy-mm-dd');
+        //     return false;
+        // }
+    },
+    // 检查字符串是否为合法IP地址
+    isIP: function (str) {
+        // 1.1.1.1  四段  [0 , 255]
+        // 第一段不能为0
+        // 每个段不能以0开头
+        //
+        // 本机IP: 58.50.120.18 湖北省荆州市 电信
+        var reg = /^([1-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\.([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])){3}$/gi;
+        return reg.test(str);
+        // if (reg.test(str)) {
+        //     console.log(str + ' 是合法的IP地址');
+        //     return true;
+        // } else {
+        //     console.log(str + ' 是不合法的IP地址');
+        //     return false;
+        // }
     }
-    // 测试
-    // console.log(myRegExp.isQQ('80583600'));
-    // console.log(myRegExp.isPhone('17607160722'));
-    // console.log(myRegExp.isEmail('80583600@qq.com'));
-    // console.log(myRegExp.isNumber('100a'));
-    // console.log(myRegExp.trim('  100  '));
-    // console.log(myRegExp.isChinese('baixiaoming'));
-    // console.log(myRegExp.isChinese('小明'));
-    // console.log(myRegExp.isPostcode('412345'));
-    // console.log(myRegExp.isIDcard('42091119940927001X'));
-    // console.log(myRegExp.isURL('https://www.baidu.com/'));
-    // console.log(myRegExp.isDate('2017-4-4'));
-    // console.log(myRegExp.isIP('1.0.0.0'));
+}
+// 测试
+// console.log(myRegExp.isQQ('80583600'));
+// console.log(myRegExp.isPhone('17607160722'));
+// console.log(myRegExp.isEmail('80583600@qq.com'));
+// console.log(myRegExp.isNumber('100a'));
+// console.log(myRegExp.trim('  100  '));
+// console.log(myRegExp.isChinese('baixiaoming'));
+// console.log(myRegExp.isChinese('小明'));
+// console.log(myRegExp.isPostcode('412345'));
+// console.log(myRegExp.isIDcard('42091119940927001X'));
+// console.log(myRegExp.isURL('https://www.baidu.com/'));
+// console.log(myRegExp.isDate('2017-4-4'));
+// console.log(myRegExp.isIP('1.0.0.0'));
 
 //	数字校验
 //    数字：^[0-9]*$
@@ -538,21 +550,27 @@ var myRegExp = {
 //	备注：这就是最终结果了,别忘了"+"可以用"*"替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里
 
 function checkJSON(msg) {
-    if(!msg){
+    if (!msg) {
         //|| typeof msg === 'number' || typeof msg === 'boolean' || typeof msg === 'symbol'
         return false;
     }
     var data,
         flag = true;
-    if(typeof msg === "string"){
+    if (typeof msg === "string") {
         try {
             data = JSON.parse(msg);
-        }catch(e) {
+        } catch (e) {
             flag = false;
         }
     }
-    if(!flag){
+    if (!flag) {
         return false;
     }
     return data;
+}
+
+function delay(time) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(resolve, time);
+    });
 }

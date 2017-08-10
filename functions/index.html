@@ -11,7 +11,7 @@
 
         console.log(isUndefined(undefined));
 
-//        console.log(isUndefined(a));
+        //        console.log(isUndefined(a));
 
         console.log('\u1234\u2345*\u1324', reverseString('\u1234\u2345*\u1324'));
 
@@ -31,7 +31,7 @@
 
         console.log(transTime(new Date(1499053797343)));
 
-        var arr = [1, 1, 2, 3,'3'];
+        var arr = [1, 1, 2, 3, '3'];
 
         console.log(arr.contains(1), arr.contains("1"));
 
@@ -53,24 +53,40 @@
         console.log(myRegExp.trim('  100  '));
 
         console.log(myRegExp.isPwd("123", 0, 3), myRegExp.isPwd("123123123d", 8, 16));
-         console.log(myRegExp.isQQ('80583600'));
-         console.log(myRegExp.isPhone('17607160722'));
-         console.log(myRegExp.isEmail('80583600@qq.com'));
-         console.log(myRegExp.isNumber('100a'));
-         console.log(myRegExp.isChinese('baixiaoming'));
-         console.log(myRegExp.isChinese('小明'));
-         console.log(myRegExp.isPostcode('412345'));
-         console.log(myRegExp.isIDcard('42091119940927001X'));
-         console.log(myRegExp.isURL('https://www.baidu.com/'));
-         console.log(myRegExp.isDate('2017 4/4'));
-         console.log(myRegExp.isIP('1.0.0.0'));
+        console.log(myRegExp.isQQ('80583600'));
+        console.log(myRegExp.isPhone('17607160722'));
+        console.log(myRegExp.isEmail('80583600@qq.com'));
+        console.log(myRegExp.isNumber('100a'));
+        console.log(myRegExp.isChinese('baixiaoming'));
+        console.log(myRegExp.isChinese('小明'));
+        console.log(myRegExp.isPostcode('412345'));
+        console.log(myRegExp.isIDcard('42091119940927001X'));
+        console.log(myRegExp.isURL('https://www.baidu.com/'));
+        console.log(myRegExp.isDate('2017 4/4'));
+        console.log(myRegExp.isIP('1.0.0.0'));
 
-//         checkJSON
+        //         checkJSON
         console.log(checkJSON("123"));
         console.log(checkJSON(null));
 
+        //        delay
+        delay(100) // 步骤1
+            .then(function STEP2() {
+                console.log("step 2 (after 100ms)");
+                return delay(200);
+            })
+            .then(function STEP3() {
+                console.log("step 3 (after another 200ms)");
+            })
+            .then(function STEP4() {
+                console.log("step 4 (next Job)");
+                return delay(50);
+            })
+            .then(function STEP5() {
+                console.log("step 5 (after another 50ms)");
+            })
 
     </script>
-    
+
 </body>
 </html>
