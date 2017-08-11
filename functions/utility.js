@@ -550,20 +550,21 @@ var myRegExp = {
 //	备注：这就是最终结果了,别忘了"+"可以用"*"替代如果你觉得空字符串也可以接受的话(奇怪,为什么?)最后,别忘了在用函数时去掉去掉那个反斜杠,一般的错误都在这里
 
 function checkJSON(msg) {
-    if (!msg) {
-        //|| typeof msg === 'number' || typeof msg === 'boolean' || typeof msg === 'symbol'
+    if(!msg){
         return false;
     }
     var data,
         flag = true;
-    if (typeof msg === "string") {
+    if(typeof msg === "string"){
         try {
             data = JSON.parse(msg);
-        } catch (e) {
+        }catch(e) {
             flag = false;
         }
+    }else {
+        data = msg;
     }
-    if (!flag) {
+    if(!flag){
         return false;
     }
     return data;

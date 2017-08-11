@@ -78,27 +78,18 @@ module.exports = {
     },
     devtool: "source-map",//delete before release
     plugins: [
-        // new webpack.ProvidePlugin({//在全局设置$为jquery
-        //     jQuery: "jquery",
-        //     $: "jquery"
-        // }),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,//set false before release
-            compress: {
-                warnings: false,
-                screw_ie8: false
-            },
-            mangle: {
-                screw_ie8: false
-            },
-            output: {
-                screw_ie8: false
-            }
-        })
-        // new UglifyJSPlugin({
-        //     test: /\.jsx?$/i,
-        //     exclude: /(node_modules|bower_components)/,
-        //     sourceMap: true
+        // new webpack.optimize.UglifyJsPlugin({//expensive close when dev
+        //     sourceMap: true,//set false before release
+        //     compress: {
+        //         warnings: false,
+        //         screw_ie8: false
+        //     },
+        //     mangle: {
+        //         screw_ie8: false
+        //     },
+        //     output: {
+        //         screw_ie8: false
+        //     }
         // })
     ]
 };
