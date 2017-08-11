@@ -574,3 +574,43 @@ function delay(time) {
         setTimeout(resolve, time);
     });
 }
+
+// polyfill安全的guard检查
+if (!Promise.observe) {
+    Promise.observe = function (pr, cb) {
+// 观察pr的决议
+        pr.then(
+            function fulfilled(msg) {
+// 安排异步回调（作为Job）
+                Promise.resolve(msg).then(cb);
+            },
+            function rejected(err) {
+// 安排异步回调（作为Job）
+                Promise.resolve(err).then(cb);
+            }
+        );
+// 返回最初的promise
+        return pr;
+    };
+}
+
+if (!Promise.wrap) {
+    Promise.wrap = function (fn) {
+        return function () {
+            var args = [].slice.call(arguments);
+            return new Promise(function (resolve, reject) {
+                fn.apply(
+                    null,
+                    args.concat(function (err, v) {
+                        if (err) {
+                            reject(err);
+                        }
+                        else {
+                            resolve(v);
+                        }
+                    })
+                );
+            });
+        };
+    };
+}

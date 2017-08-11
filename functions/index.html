@@ -84,8 +84,21 @@
             })
             .then(function STEP5() {
                 console.log("step 5 (after another 50ms)");
-            })
+            });
 
+        Promise.race([
+            Promise.observe(
+                foo(), // 试着运行foo()
+                function cleanup(msg) {
+// 在foo()之后清理，即使它没有在超时之前完成
+                }
+            ),
+            timeoutPromise(3000) // 给它3秒钟
+        ]);
+        var ajax = function(){
+
+        };
+        var request = Promise.wrap( ajax );
     </script>
 
 </body>
