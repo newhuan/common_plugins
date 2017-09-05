@@ -615,3 +615,47 @@ if (!Promise.wrap) {
         };
     };
 }
+
+/**
+ * check if a val is a real number
+*/
+function isNumber(val) {
+    return typeof val === 'number' && isFinite(value);
+}
+
+/**
+ * split a large array's handler to some small arrays' handler
+ * @param {Array} array data array
+ * @param {Function} process handler function
+ * @param {Number} num Optional data num to handler in one time
+ * @param {Number} delay Optional timeOut delay
+ * @param {Object} callee Optional process's context
+*/
+function myChunck(array, process, num, delay, callee) {
+    delay = delay || 100;
+    num = num || 1;
+    callee = callee || window;
+    var newArray = array.slice( 0 );
+    setTimeout( function foo () {
+        var thisArray = newArray.splice( 0, num );
+        process.apply( callee, [thisArray] );
+        if ( newArray.length > 0 ) {
+            setTimeout( foo, delay );
+        }
+    }, delay );
+}
+
+/**
+ * make method just run one time between delay
+ * @param {Function} method function that unwilling to run frequently
+ * @param {Number} delay timeout delay
+ * @param {Object} context method's this poniter
+*/
+function throttle ( method, delay, context ) {
+    clearTimeout( method.tId );
+    delay = delay || 100;
+    context = context || window;
+    method.tId = setTimeout( function () {
+        method.call( context );
+    } , delay );
+}

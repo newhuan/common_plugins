@@ -70,35 +70,54 @@
         console.log(checkJSON(null));
 
         //        delay
-        delay(100) // 步骤1
-            .then(function STEP2() {
-                console.log("step 2 (after 100ms)");
-                return delay(200);
-            })
-            .then(function STEP3() {
-                console.log("step 3 (after another 200ms)");
-            })
-            .then(function STEP4() {
-                console.log("step 4 (next Job)");
-                return delay(50);
-            })
-            .then(function STEP5() {
-                console.log("step 5 (after another 50ms)");
-            });
-
-        Promise.race([
-            Promise.observe(
-                foo(), // 试着运行foo()
-                function cleanup(msg) {
-// 在foo()之后清理，即使它没有在超时之前完成
-                }
-            ),
-            timeoutPromise(3000) // 给它3秒钟
-        ]);
+//        delay(100) // 步骤1
+//            .then(function STEP2() {
+//                console.log("step 2 (after 100ms)");
+//                return delay(200);
+//            })
+//            .then(function STEP3() {
+//                console.log("step 3 (after another 200ms)");
+//            })
+//            .then(function STEP4() {
+//                console.log("step 4 (next Job)");
+//                return delay(50);
+//            })
+//            .then(function STEP5() {
+//                console.log("step 5 (after another 50ms)");
+//            });
+//
+//        Promise.race([
+//            Promise.observe(
+//                foo(), // 试着运行foo()
+//                function cleanup(msg) {
+//// 在foo()之后清理，即使它没有在超时之前完成
+//                }
+//            ),
+//            timeoutPromise(3000) // 给它3秒钟
+//        ]);
+        function foo() {
+            
+        }
         var ajax = function(){
 
         };
-        var request = Promise.wrap( ajax );
+//        var request = Promise.wrap( ajax );
+
+        var arr = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 ];
+        function fooo(arr) {
+            console.log("mychunck--foo");
+            console.log(...arr, this);
+        }
+
+        myChunck(arr, fooo.bind(foo), 5);
+
+        function testThrottle() {
+            console.log("testThrottle");
+        }
+        window.addEventListener('resize', function () {
+            throttle(testThrottle, 100);
+        });
+
     </script>
 
 </body>

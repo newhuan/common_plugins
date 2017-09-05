@@ -50,6 +50,7 @@ function testAjax() {
         type: "get",
     };
     let callback = this.testDataHandler.bind(this);
+
     this.asyncRequest(params, callback).catch(function (e) {
         if (typeof DEBUG !== "undefined") {
             console.log("catch error", e);
