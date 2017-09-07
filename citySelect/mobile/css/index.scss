@@ -1,0 +1,114 @@
+@import "pxtorem";
+
+/*********** common& UI-width:750 ************/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+em {
+  font-style: normal;
+}
+
+div:after {
+  content: '.';
+  height: 0;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  clear: both;
+}
+
+.container:after {
+  content: '.';
+  height: 0;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  clear: both;
+}
+
+/********************** common end **********************/
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+.picker {
+  font-size:ptr(14*2)!important;
+}
+
+.picker .picker-panel {
+  height:ptr(234*2)!important;
+  transform: translateY(ptr(234*2));
+  -webkit-transform: translateY(ptr(234*2));
+}
+
+.picker .picker-panel .picker-choose {
+  height:ptr(40*2)!important;
+  font-size:ptr(14*2)!important
+}
+
+.picker .picker-panel .picker-choose .picker-title {
+  line-height:ptr(50*2)!important;
+  font-size:ptr(19*2)!important;
+}
+
+.picker .picker-panel .picker-choose .cancel, .picker .picker-panel .picker-choose .confirm {
+  padding:ptr(10*2)!important;
+  top:ptr(6*2)!important
+}
+
+.picker .picker-panel .picker-content .mask-bottom, .picker .picker-panel .picker-content .mask-top {
+  height:ptr(68*2)!important;
+}
+
+
+.picker .picker-panel .picker-content .mask-top:after, .picker .picker-panel .picker-content .mask-top:before {
+  border-top:ptr(1*2) solid #ccc;
+}
+
+.picker .picker-panel .picker-content .mask-bottom:after, .picker .picker-panel .picker-content .mask-bottom:before {
+  border-top:ptr(1*2) solid #ccc;
+}
+
+
+.picker .picker-panel .wheel-wrapper {
+  padding: 0ptr(10*2)!important
+}
+
+.picker .picker-panel .wheel-wrapper .wheel {
+  width: 1%;
+  height:ptr(173*2)!important;
+  font-size:ptr(21*2)!important
+}
+
+.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll {
+  margin-top:ptr(68*2)!important;
+  line-height:ptr(36*2)!important
+}
+
+.picker .picker-panel .wheel-wrapper .wheel .wheel-scroll .wheel-item {
+  height:ptr(36*2)!important;
+}
+
+.picker .picker-footer {
+  height:ptr(20*2)!important
+}
+

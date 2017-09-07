@@ -1,0 +1,27 @@
+//this is the width of the designer page
+$designWidth: 750;
+$remCount: 10;
+$rem: (750 / 10) px;
+@function ptr($px) {
+  @return $px*($remCount/$designWidth)*1rem;
+}
+
+//div {
+//  width: px2rem(10);
+//}
+body {
+  font-size: ptr(16);
+}
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}
+
+
+
+
+
+
+
