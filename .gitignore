@@ -1,3 +1,7 @@
 *.xml
 *.iml
-
+\.idea/
+*.map
+\node_modules/
+npm
+package-lock.json

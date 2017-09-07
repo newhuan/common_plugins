@@ -114,8 +114,57 @@ picker.on('picker.select', function (selectedVal, selectedIndex) {
     var text2 = second[selectedIndex[1]].text;
     var text3 = third[selectedIndex[2]] ? third[selectedIndex[2]].text : '';
     //tip:: change value
-    nameEl.innerText = text1 + ' ' + text2 + ' ' + text3;
+    if ( isAddressLegal(selectedIndex) ) {
+        nameEl.innerText = text1 + ' ' + text2 + ' ' + text3;
+    } else {
+        nameEl.innerText = "地址非法，请重新选择！";
+    }
 });
+
+function isAddressLegal( selectedIndex ) {
+    var i,
+        j,
+        k,
+        item,
+        sub,
+        subArea,
+        provinceIndex = selectedIndex[ 0 ],
+        cityIndex = selectedIndex[ 1 ],
+        areaIndex = selectedIndex[ 2 ];
+    //get output address names
+    var len = city.length,
+        provinceName = first[ provinceIndex ].text,
+        cityName = second[ cityIndex ].text,
+        areaName = third[ areaIndex ] ? third[ areaIndex ].text : "";
+    //check address legality
+    for ( i = 0; i < len; ++i ) {
+        item = city[ i ];
+        if ( item.name === provinceName ) {
+            sub = item.sub;
+            if ( !sub ) {
+                return ( cityName === "" && areaName === ""  );
+            }
+
+            for ( j = 0; j < sub.length; ++j ) {
+                if ( sub[ j ].name === cityName ) {
+                    subArea = sub[ j ].sub;
+                    if ( !subArea ) {
+                        return areaName === "";
+                    }
+
+                    for ( k = 0; k < subArea.length; ++k ) {
+                        if ( subArea[ k ].name === areaName ) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+    }
+    return false;
+}
 
 picker.on('picker.change', function (index, selectedIndex) {
     if (index === 0) {
