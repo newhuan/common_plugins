@@ -114,57 +114,102 @@ picker.on('picker.select', function (selectedVal, selectedIndex) {
     var text2 = second[selectedIndex[1]].text;
     var text3 = third[selectedIndex[2]] ? third[selectedIndex[2]].text : '';
     //tip:: change value
+    console.log("legal ?", isAddressLegal2(text1, text2, text3) );
     if ( isAddressLegal(selectedIndex) ) {
         nameEl.innerText = text1 + ' ' + text2 + ' ' + text3;
+
     } else {
         nameEl.innerText = "地址非法，请重新选择！";
     }
 });
 
-function isAddressLegal( selectedIndex ) {
-    var i,
-        j,
-        k,
-        item,
-        sub,
-        subArea,
-        provinceIndex = selectedIndex[ 0 ],
-        cityIndex = selectedIndex[ 1 ],
-        areaIndex = selectedIndex[ 2 ];
-    //get output address names
-    var len = city.length,
-        provinceName = first[ provinceIndex ].text,
-        cityName = second[ cityIndex ].text,
-        areaName = third[ areaIndex ] ? third[ areaIndex ].text : "";
-    //check address legality
-    for ( i = 0; i < len; ++i ) {
-        item = city[ i ];
-        if ( item.name === provinceName ) {
-            sub = item.sub;
-            if ( !sub ) {
-                return ( cityName === "" && areaName === ""  );
-            }
+window.getCityObj = getCityObj();
 
-            for ( j = 0; j < sub.length; ++j ) {
-                if ( sub[ j ].name === cityName ) {
-                    subArea = sub[ j ].sub;
-                    if ( !subArea ) {
-                        return areaName === "";
-                    }
+function isAddressLegal( pro, cit, are ) {
+    var cityObj = window.cityObj;
+    return ( !!cityObj[ pro ]  && !!cityObj[ pro ][ cit ] && !!cityObj[ pro ][ cit ][ are ] );
+}
 
-                    for ( k = 0; k < subArea.length; ++k ) {
-                        if ( subArea[ k ].name === areaName ) {
-                            return true;
+function getCityObj() {
+    var cityObj = {};
+    var len = city.length;
+    for ( var i = 0; i < len; ++i ) {
+        var pro = city[ i ];
+        cityObj[ pro.name ] = {};
+
+        if ( !!pro.sub && pro.sub.length > 0 ) {
+            var cit = pro.sub;
+
+            for ( var j = 0; j < cit.length; ++j ) {
+                cityObj[ pro.name ][ cit[ j ].name ] = {};
+
+                if ( !!cit[ j ].sub && cit[ j ].sub.length > 0 ) {
+                    var are = cit[ j ].sub;
+                    if ( !!are && are.length > 0 ) {
+                        for ( var k = 0; k < are.length; ++k ) {
+                            cityObj[ pro.name ][ cit[ j ].name ][ are[ k ].name ] = true;
                         }
+
+                    } else {
+                        cityObj[ pro.name ][ cit[ j ].name ][ "" ] = true;
                     }
-                    return false;
+                } else {
+                   cityObj[ pro.name ][ cit[ j ].name ][ "" ] = true;
                 }
             }
-            return false;
+        } else {
+
+            cityObj[ pro.name ][ "" ] = {};
+            cityObj[ pro.name ][ "" ][ "" ] = true;
         }
     }
-    return false;
+    return cityObj;
 }
+
+// function isAddressLegal( selectedIndex ) {
+//     var i,
+//         j,
+//         k,
+//         item,
+//         sub,
+//         subArea,
+//         provinceIndex = selectedIndex[ 0 ],
+//         cityIndex = selectedIndex[ 1 ],
+//         areaIndex = selectedIndex[ 2 ];
+//     //get output address names
+//     var len = city.length,
+//         provinceName = first[ provinceIndex ].text,
+//         cityName = second[ cityIndex ].text,
+//         areaName = third[ areaIndex ] ? third[ areaIndex ].text : "";
+//     //check address legality
+//     for ( i = 0; i < len; ++i ) {
+//         item = city[ i ];
+//         if ( item.name === provinceName ) {
+//             sub = item.sub;
+//             if ( !sub ) {
+//                 return ( cityName === "" && areaName === ""  );
+//             }
+//
+//             for ( j = 0; j < sub.length; ++j ) {
+//                 if ( sub[ j ].name === cityName ) {
+//                     subArea = sub[ j ].sub;
+//                     if ( !subArea ) {
+//                         return areaName === "";
+//                     }
+//
+//                     for ( k = 0; k < subArea.length; ++k ) {
+//                         if ( subArea[ k ].name === areaName ) {
+//                             return true;
+//                         }
+//                     }
+//                     return false;
+//                 }
+//             }
+//             return false;
+//         }
+//     }
+//     return false;
+// }
 
 picker.on('picker.change', function (index, selectedIndex) {
     if (index === 0) {
