@@ -126,8 +126,8 @@ picker.on('picker.select', function (selectedVal, selectedIndex) {
 window.getCityObj = getCityObj();
 
 function isAddressLegal( pro, cit, are ) {
-    var cityObj = window.cityObj;
-    return ( !!cityObj[ pro ]  && !!cityObj[ pro ][ cit ] && !!cityObj[ pro ][ cit ][ are ] );
+    var cityObj = !!window.cityObj ? window.cityObj : getCityObj();
+    return ( !!cityObj[ pro ]  && !!cityObj[ pro ][ cit ] && cityObj[ pro ][ cit ][ are ] );
 }
 
 function getCityObj() {
@@ -136,29 +136,24 @@ function getCityObj() {
     for ( var i = 0; i < len; ++i ) {
         var pro = city[ i ];
         cityObj[ pro.name ] = {};
-
         if ( !!pro.sub && pro.sub.length > 0 ) {
+            //省下有市的数据且市的数据不为0
             var cit = pro.sub;
-
             for ( var j = 0; j < cit.length; ++j ) {
                 cityObj[ pro.name ][ cit[ j ].name ] = {};
-
                 if ( !!cit[ j ].sub && cit[ j ].sub.length > 0 ) {
+                    //市下有区的数据且区的数据长度不为0（五指山）
                     var are = cit[ j ].sub;
-                    if ( !!are && are.length > 0 ) {
-                        for ( var k = 0; k < are.length; ++k ) {
-                            cityObj[ pro.name ][ cit[ j ].name ][ are[ k ].name ] = true;
-                        }
-
-                    } else {
-                        cityObj[ pro.name ][ cit[ j ].name ][ "" ] = true;
+                    for ( var k = 0; k < are.length; ++k ) {
+                        cityObj[ pro.name ][ cit[ j ].name ][ are[ k ].name ] = true;
                     }
                 } else {
+                    //市下无区的数据，或区的数据长度为0
                    cityObj[ pro.name ][ cit[ j ].name ][ "" ] = true;
                 }
             }
         } else {
-
+            //省下无市的数据
             cityObj[ pro.name ][ "" ] = {};
             cityObj[ pro.name ][ "" ][ "" ] = true;
         }
