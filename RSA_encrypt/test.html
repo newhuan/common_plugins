@@ -7,7 +7,8 @@
 <body>
     <script src="jsencrypt.min.js"></script>
     <script>
-        var pubKey = "  -----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnMk+MvRm48SEnFlBTjllD1eQ8LR6GpHdb7X4R8OBt3oRuph/FBBSZIq6dlSKXAvG6Zfa3rBkKvMN0OcFgTXhgPYWCzh/Pz9nuEW7oGgUTA++HKUeGXgh4yru1w2QTcUIP1xWrKjPY2QS63q4clH3hS5rfpOkDEmQ53KgnTHbeqChQN3ILmoLeyvShgYMnBKhYQUbT5K4pxALSMeBK4/B2u3j7pPuH/TP7Wpjjn2ziS/sC9ii6dVLH/C5wKsLnwm9xKI1O3zLJX5uy6a84MV9G6RVlsjZ4Bfaav4zmP54g1GDaZLpDe+zprQI0iPVx2IF9BgsU/6QAZ6/0965RavcMQIDAQAB\n-----END PUBLIC KEY-----";
+        //此库和base64.js 冲突
+        var pubKey = "  -----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnMk+MvRm48SEnFlBTjll D1eQ8LR6GpHdb7X4R8OBt3oRuph/FBBSZIq6dlSKXAvG6Zfa3rBkKvMN0OcFgTXhgPYWCzh/Pz9nuEW7oGgUTA++HKUeGXgh4yru1w2QTcUIP1xWrKjPY2QS63q4clH3hS5rfpOkDEmQ53KgnTHbeqChQN3ILmoLeyvShgYMnBKhYQUbT5K4pxALSMeBK4/B2u3j7pPuH/TP7Wpjjn2ziS/sC9ii6dVLH/C5wKsLnwm9xKI1O3zLJX5uy6a84MV9G6RVlsjZ4Bfaav4zmP54g1GDaZLpDe+zprQI0iPVx2IF9BgsU/6QAZ6/0965RavcMQIDAQAB\n-----END PUBLIC KEY-----";
         var encrypt = new JSEncrypt();
         encrypt.setPublicKey(pubKey);
         console.log(encrypt.encrypt("123"));

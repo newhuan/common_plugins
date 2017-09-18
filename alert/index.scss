@@ -1,0 +1,145 @@
+@import "pxtorem";
+
+/*********** common& UI-width:750 ************/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+em {
+  font-style: normal;
+}
+
+div:after {
+  content: '.';
+  height: 0;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  clear: both;
+}
+
+.container:after {
+  content: '.';
+  height: 0;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  clear: both;
+}
+
+/********************** common end **********************/
+html, body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.alert-container{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba( 0 , 0, 0, .3 );
+
+  .alert-main-area{
+    width: ptr( 400 );
+    height: ptr( 200 );
+    border-radius: ptr( 8 );
+    position: absolute;
+    left: 50%;
+    margin-left: ptr( -200 );
+    top: 50%;
+    margin-top: ptr( -100 );
+    background-color: white;
+    color: black;
+
+    .alert-title{
+      width: 100%;
+      height: ptr( 40 );
+      line-height: ptr( 40 );
+      border-bottom: ptr( 1 ) solid #ddd;
+      color: #333;
+      font-size: ptr( 20 );
+      text-align: center;
+    }
+
+    .alert-msg{
+      line-height: ptr( 24 );
+      font-size: ptr( 20 );
+      padding: 0 ptr( 20 );
+      text-align: center;
+      color: #333;
+      margin-top: ptr( 20 );
+    }
+    .alert-msg-without-title{
+      margin-top: ptr( 50 );
+    }
+
+    .prompt-input{
+      display: inline-block;
+      margin-top: ptr( 6 );
+      line-height: ptr( 24 );
+      font-size: ptr( 20 );
+      box-sizing: border-box;
+      width: ptr( 356 );
+      margin-left: ptr( 20 );
+      height: ptr( 28 );
+      padding: ptr( 2 ) ptr( 4 );
+      position: absolute;
+      bottom: ptr( 70 );
+    }
+
+    .alert-btn-container{
+      height: ptr( 36 );
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      bottom: ptr( 26 );
+      .alert-btn{
+        width: ptr( 80 );
+        height: ptr( 36 );
+        line-height: ptr( 36 );
+        font-size: ptr( 20 );
+        background-color: white;
+        color: #333;
+        border-radius: ptr( 18 );
+        outline: 0 none;
+        cursor: pointer;
+      }
+      .alert-concel-btn{
+        margin-left: ptr( 20 );
+        border: 1px solid #333;
+      }
+      .alert-sure-btn{
+        background-color: #a1acfd;
+        border: 0 none;
+        color: white;
+      }
+      .disabled-btn{
+        cursor: not-allowed;
+      }
+    }
+
+
+  }
+}
