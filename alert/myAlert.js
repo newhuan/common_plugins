@@ -18,7 +18,6 @@ $showAlertBtn.addEventListener( "click", function () {
     var clickNum = 0;
     var params = {
         type: "alert",
-        title: "标题",
         msg: "内容",
         preSet: function ( $alertContainer ) {
             $alertContainer.dataId = "123";
@@ -26,11 +25,13 @@ $showAlertBtn.addEventListener( "click", function () {
         sureCallback: function ( evt, res ) {
             if ( !clickNum ) {
                 ++clickNum;
+                params.title = "标题",
                 params.type = "confirm";
                 showMyTipTab( params );
             } else {
                 if ( clickNum === 1 ) {
                     ++clickNum;
+
                     params.type = "prompt";
                     showMyTipTab( params );
                 }
@@ -77,6 +78,7 @@ function showMyTipTab( params ) {
     }
 
     $alertContainer.append( $alertMainArea );
+    $alertMsg.className = "alert-msg";
     if ( !!title ) {
         $alertMainArea.append( $alertTitle );
     } else {
@@ -169,7 +171,6 @@ function showMyTipTab( params ) {
     $alertContainer.className = "alert-container";
     $alertMainArea.className = "alert-main-area";
     $alertTitle.className = "alert-title";
-    $alertMsg.className = "alert-msg";
     $alertBtnContainer.className = "alert-btn-container";
     $sureBtn.className = "alert-btn alert-sure-btn";
     if ( !isAble ) {
