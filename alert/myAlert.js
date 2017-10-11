@@ -43,7 +43,7 @@ $showAlertBtn.addEventListener( "click", function () {
             ifCanClick = true
         }
     };
-    showMyTipTab( params );
+    var alertId = showMyTipTab( params );
 } );
 
 /**
