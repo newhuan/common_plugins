@@ -1,0 +1,16 @@
+{
+  "name": "phantomTest",
+  "version": "1.0.0",
+  "description": "phantom test",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "newhuan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.15.5",
+    "phantom": "^4.0.5"
+  }
+}
