@@ -27,11 +27,12 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        index: ['babel-polyfill', './dist/js/index/index.js'],
-        test: ['babel-polyfill', './dist/js/test/test.js'],
+        // index: ['babel-polyfill', './dist/js/index/index.js'],
+        // test: ['babel-polyfill', './dist/js/test/test.js'],
+        popularize: ['babel-polyfill', './dist/js/popularize.js'],
     },
     output: {
-        path: __dirname + "\\dist\\dest\\js",
+        path: __dirname + "\/dist\/dest\/js",
         filename: '[name]compiled.js',
         publicPath: "./dest/js/",
     },
