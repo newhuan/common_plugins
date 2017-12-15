@@ -36,7 +36,10 @@
 //        }
         var key = "tianwang8gaidihu",
             miwen = "34ac1ff6fcbc5f2cb11417c3bc8d75450715f609bfaf8dd9c20549af3a466bf49785020b1b12521d4b3a71ee0bf0e5354a57faeb1b8b14e0cd24153b2877975676d6a3a77fd4dbdcc98c7b2308f5519e14a6568899a785d49960910514e9c8e5fe7780e3c308eeef40b5a69aa82514a3a6ee5dfc98c9d0da2c0eb899de7653e5e3f6728d17496530bc7cc25cfc95339f2e38f89045605142b00c4fd8997e81c5d035b2ca26e8bc0d5cb642dc512bd28fff64e9c2539da7d97bfcd4e83f2676d95b54482e87be6f5bbdf0fa0aa88a5377184885ba36531100d3bd3458104b71e12985133252a9c56423bb12e5718c9cbcad9f9634f2fba67d12769402e54cfb64901bafaa16382cafeb263c1749e38dd5494e741e3c8f2da41d08e71de5f8f3a66c0fe9334a92c432a011ad7e941a3761"
-        console.log( decrypt( key, miwen ) );
+        console.log(  );
+        let a = decrypt( key, miwen );
+        let b = JSON.parse( a.slice( 0, -8 ) )
+        console.log( b )
 //        console.log( encrypt( key, mingwen ), "69c4e0d86a7b0430d8cdb78070b4c55a" )
     </script>
     
