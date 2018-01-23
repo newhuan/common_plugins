@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .img-container{
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            float: left;
+        }
+        img.vertical{
+            width: 100%;
+            height: auto;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+            display: block;
+            position: absolute;
+        }
+        img.horizontal{
+            height: 100%;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            display: block;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="img-container">
+        <img class="v1" src="http://image.uisdc.com/wp-content/uploads/2017/03/60-free-image-galleries.jpg" alt="" title="" >
+    </div>
+    <div class="img-container">
+        <img class="v1" src="https://oss.mitures.com/images/4203040A-2C14-42FB-AD1D-6F4E6C40A449/1516088283128.webp" alt="" title="" >
+    </div>
+    <div class="img-container">
+        <img class="v1" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/button_add.png" alt="" title="" >
+    </div>
+    <div class="img-container">
+        <img class="v2" src="http://image.uisdc.com/wp-content/uploads/2017/03/60-free-image-galleries.jpg" alt="" title="" >
+    </div>
+    <div class="img-container">
+        <img class="v2" src="https://oss.mitures.com/images/4203040A-2C14-42FB-AD1D-6F4E6C40A449/1516088283128.webp" alt="" title="" >
+    </div>
+    <div class="img-container">
+        <img class="v2" src="https://mituresprd.oss-cn-hangzhou.aliyuncs.com/web/1f6f5924c1f4c65f2663a590cf5cfcda/images/button_add.png" alt="" title="" >
+    </div>
+    <script>
+        document.querySelectorAll( ".v1" )[ 0 ].addEventListener( "load", showAll )
+        document.querySelectorAll( ".v1" )[ 1 ].addEventListener( "load", showAll )
+        document.querySelectorAll( ".v1" )[ 2 ].addEventListener( "load", showAll )
+        document.querySelectorAll( ".v2" )[ 0 ].addEventListener( "load", fillAll )
+        document.querySelectorAll( ".v2" )[ 1 ].addEventListener( "load", fillAll )
+        document.querySelectorAll( ".v2" )[ 2 ].addEventListener( "load", fillAll )
+        function fillAll( e ) {
+            if ( e.target.width <= e.target.height ) {
+                e.target.className += " vertical";
+            } else {
+                e.target.className += " horizontal";
+            }
+        }
+        function showAll( e ) {
+            if ( e.target.width >= e.target.height ) {
+                e.target.className += " vertical";
+            } else {
+                e.target.className += " horizontal";
+            }
+        }
+    </script>
+</body>
+</html>

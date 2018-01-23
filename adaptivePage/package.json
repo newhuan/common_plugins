@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
-    "jquery": "^1.11.3",
     "perfect-scrollbar": "^0.7.1",
     "push.js": "^1.0.4"
   }

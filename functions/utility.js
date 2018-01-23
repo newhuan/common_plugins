@@ -122,28 +122,7 @@ function delCookie(name) {
 }
 
 /************************************/
-var _$encode = function (_map, _content) {
-    _content = '' + _content;
-    if (!_map || !_content) {
-        return _content || '';
-    }
-    return _content.replace(_map.r, function ($1) {
-        var _result = _map[!_map.i ? $1.toLowerCase() : $1];
-        return _result != null ? _result : $1;
-    });
-};
-var _$escape = (function () {
-    var _reg = /<br\/?>$/,
-        _map = {
-            r: /\<|\>|\&|\r|\n|\s|\'|\"/g,
-            '<': '&lt;', '>': '&gt;', '&': '&amp;', ' ': '&nbsp;',
-            '"': '&quot;', "'": '&#39;', '\n': '<br/>', '\r': ''
-        };
-    return function (_content) {
-        _content = _$encode(_map, _content);
-        return _content.replace(_reg, '<br/><br/>');
-    };
-})();
+
 /* 格式化日期 */
 Date.prototype.Format = function (fmt) {
     var o = {
@@ -659,3 +638,51 @@ function throttle ( method, delay, context ) {
         method.call( context );
     } , delay );
 }
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test( window.navigator.userAgent );
+}
+
+var _$encode = function (_map, _content) {
+    _content = '' + _content;
+    if (!_map || !_content) {
+        return _content || '';
+    }
+    return _content.replace(_map.r, function ($1) {
+        var _result = _map[!_map.i ? $1.toLowerCase() : $1];
+        return _result != null ? _result : $1;
+    });
+};
+
+//防止脚本注入
+var _$escape = (function () {
+    var _reg = /<br\/?>$/,
+        _map = {
+            r: /\<|\>|\&|\r|\n|\s|\'|\"/g,
+            '<': '&lt;', '>': '&gt;', '&': '&amp;', ' ': '&nbsp;',
+            '"': '&quot;', "'": '&#39;', '\n': '<br/>', '\r': ''
+        };
+    return function (_content) {
+        _content = _$encode(_map, _content);
+        return _content.replace(_reg, '<br/><br/>');
+    };
+})();
+
+var _$unescape = (function ( a ) {
+    // var _reg = /&lt;br\/?&gt;&lt;br\/?&gt;$/,
+    var _reg = /<br\/?><br\/?>$/,
+        _map = {
+            r: /&lt;|&gt;|&amp;|&nbsp;|&quot;|&#39;|<br\/>|<br>/g,
+            '&lt;': "<",
+            '&gt;': ">",
+            '&amp;': "&",
+            '&nbsp;': " ",
+            '&quot;': '"',
+            '&#39;': "'",
+            '<br/>': "\n",
+            '<br>': "\n",
+        }
+        return function ( _content ) {
+            _content = _$encode( _map, _content );
+            return _content.replace( _reg, "<br/>" );
+        }
+    })();
