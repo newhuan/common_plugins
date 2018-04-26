@@ -5,6 +5,7 @@ import { getAvatar } from '../../components/Avatar';
 import { getInputItem } from '../../components/InputItem'
 import np from '../../components/toggleStyle';
 import nav from '../../components/nav';
+import confirm from '../../components/confirm';
 
 const indexPath = './assets/images/index/';
 
@@ -13,8 +14,9 @@ function WEB() {
 }
 
 let wp = WEB.prototype;
-$.extend( wp, np )
-$.extend( wp, nav )
+$.extend( wp, np );
+$.extend( wp, nav );
+$.extend( wp, confirm );
 
 wp.init = function () {
     $( 'body' ).append( getAvatar( { src: `${indexPath}19.jpg`, classes: [ 'avatar' ] } ) );
@@ -24,6 +26,9 @@ wp.init = function () {
     this.initToggleStyle( true );
     test().then( res => {
         console.log( res , getUrlParam( "id" ) );
+        this.confirm( {
+            text: "confirm"
+        } )
     } )
 }
 
