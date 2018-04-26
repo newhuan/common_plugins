@@ -27,12 +27,11 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        // index: ['babel-polyfill', './dist/js/index/index.js'],
+        index: ['babel-polyfill', './dist/js/index.js'],
         // test: ['babel-polyfill', './dist/js/test/test.js'],
-        popularize: ['babel-polyfill', './dist/js/popularize.js'],
     },
     output: {
-        path: __dirname + "\/dist\/dest\/js",
+        path: __dirname + "\/dest\/js",
         filename: '[name]compiled.js',
         publicPath: "./dest/js/",
     },
@@ -72,7 +71,7 @@ module.exports = {
             // }
         ]
     },
-    watch: false,
+    watch: true,
     watchOptions: {
         aggregateTimeout: 300,
         poll: 1000

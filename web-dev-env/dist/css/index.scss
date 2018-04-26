@@ -1,0 +1,11 @@
+@import "../config/init";
+@import "../components/Avatar/index";
+a {
+  color: #998877;
+}
+
+.avatar{
+  width: 100px;
+  height: 100px;
+  margin-left: 100px;
+}

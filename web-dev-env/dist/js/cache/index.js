@@ -19,6 +19,4 @@ let DataCache = (function () {
 
 let cache = new DataCache();
 
-module.exports = {
-    cache
-}
+export default cache;

@@ -1,0 +1,10 @@
+$designWidth: 750;
+$remCount: 10;
+$rem: (750 / 10) px;
+@function ptr($px) {
+  @return $px*($remCount/$designWidth)*1rem;
+}
+
+@function ptr375( $px ) {
+  @return ptr( $px * 2 );
+}

@@ -1,0 +1,1 @@
+export { getUrlParam } from './url';
