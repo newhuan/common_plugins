@@ -27,7 +27,7 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        index: ['babel-polyfill', './dist/js/index.js'],
+        index: ['babel-polyfill', './dist/assets/js/index.js'],
         // test: ['babel-polyfill', './dist/js/test/test.js'],
     },
     output: {

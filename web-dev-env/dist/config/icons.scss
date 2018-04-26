@@ -1,0 +1,9 @@
+$ENTRANCE_CHAT: "entrance_chat.png";
+:export {
+  ENTRANCE_CHAT: $ENTRANCE_CHAT;
+}
+
+$iconHost: "";
+@function addIconHost( $src ) {
+  @return $iconHost + $src;
+}

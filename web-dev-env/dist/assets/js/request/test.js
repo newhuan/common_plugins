@@ -1,6 +1,6 @@
 import {requestWithToken} from "./index";
-import {getUrl} from "../../config";
-import {API_URL} from "../../config/consts";
+import {getUrl} from "../../../config/index";
+import {API_URL} from "../../../config/consts";
 
 export function test() {
     let key = API_URL;

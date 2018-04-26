@@ -1,5 +1,5 @@
-import { API_URL } from '../../config/consts.js'
-import { getUrl } from "../../config";
+import { API_URL } from '../../../config/consts.js'
+import { getUrl } from "../../../config/index";
 
 export const datas = {
     [ API_URL ]: {

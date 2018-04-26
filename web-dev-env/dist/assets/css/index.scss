@@ -1,0 +1,19 @@
+@import "../../config/init";
+@import "../../components/Avatar/index";
+@import "../../config/px2rem";
+@import "../../config/icons";
+
+a {
+  color: #998877;
+}
+
+.avatar{
+  width: 100px;
+  height: 100px;
+  margin-left: 100px;
+}
+.avatar-mobile{
+  width: ptr375( 100 );
+  height: ptr375( 100 );
+  margin-left: ptr375( 100 );
+}
