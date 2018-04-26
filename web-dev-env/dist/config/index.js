@@ -14,4 +14,6 @@ export function getUrl( key, params = {} ) {
     return root + config.urls[ key ]( params );
 }
 
+export const imageRoot = '';
+
 export default config;

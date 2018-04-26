@@ -1,0 +1,57 @@
+@import "../../config/px2rem";
+.nav-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+.nav {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  .back{
+    z-index: 3;
+    position: absolute;
+    left: ptr375( 15 );
+    top: ptr375( 19 );
+    width: ptr375( 20 );
+    height: ptr375( 14 );
+    img{
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+}
+.title{
+  position: fixed;
+  width: 100%;
+  height: ptr375( 60 );
+  top: 0;
+  left: 0;
+  line-height: ptr375( 60 );
+  text-align: center;
+  //position: relative;
+  color: #333;
+  font-size: ptr375( 16 );
+  background-color: transparent;
+  z-index: 2;
+    //opacity: 0;
+  }
+.in-ios{
+  .nav,.title {
+    padding-top: ptr375( 20 );
+    padding-top: env( safe-area-inset-top );
+    //margin-top: env( safe-area-inset-top );
+    .bak{
+      top: ptr375( 19 );
+    }
+  }
+  .back{
+    margin-top: ptr375( 20 );
+    margin-top: env( safe-area-inset-top );
+  }
+}

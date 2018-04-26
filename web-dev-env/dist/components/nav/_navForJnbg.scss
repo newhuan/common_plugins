@@ -1,0 +1,32 @@
+//source page has set rem
+@function _ptr375( $px ){
+  @return $px / 10 * 1rem;
+}
+.nav {
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  height: _ptr375( 60 )!important;
+  .back{
+    z-index: 3;
+    position: absolute;
+    left: _ptr375( 15 );
+    top: _ptr375( 19 );
+    width: _ptr375( 20 );
+    height: _ptr375( 14 );
+    img{
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+  .title{
+    width: 100%;
+    height: _ptr375( 60 );
+    line-height: _ptr375( 60 );
+    text-align: center;
+    position: relative;
+    color: #333;
+    font-size: _ptr375( 16 );
+  }
+}
