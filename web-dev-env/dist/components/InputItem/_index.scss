@@ -1,0 +1,27 @@
+@import "../../config/px2rem";
+.input-item{
+  height: ptr375( 52 );
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  label{
+    width: ptr375( 80 );
+    height: ptr375( 52 );
+    line-height: ptr375( 52 );
+    float: left;
+    text-align: left;
+    color: #333;
+    font-size: ptr375( 16 );
+  }
+  input{
+    border: 0 none;
+    outline: 0 none;
+    margin-top: ptr375( 16 );
+    height: ptr375( 20 );
+    line-height: ptr375( 20 );
+    box-sizing: border-box;
+    padding: 0 ptr375(10);
+    font-size: ptr375(12);
+    color: #666;
+  }
+}
