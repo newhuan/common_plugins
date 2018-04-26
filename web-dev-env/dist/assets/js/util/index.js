@@ -1,5 +1,6 @@
 export { getUrlParam } from './url';
 export { delCookie, readCookie, setCookie } from './cookie';
+export { MD5 } from './encrypt';
 
 export function wait(time) {
     return new Promise(function (resolve, reject) {

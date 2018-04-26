@@ -1,4 +1,4 @@
-import { getUrlParam } from './util/index';
+import { getUrlParam, MD5 } from './util';
 import { test } from './request/index';
 import cache from './cache/index';
 import { getAvatar } from '../../components/Avatar';
@@ -27,7 +27,7 @@ wp.init = function () {
     test().then( res => {
         console.log( res , getUrlParam( "id" ) );
         this.confirm( {
-            text: "confirm"
+            text: MD5("confirm")
         } )
     } )
 }
