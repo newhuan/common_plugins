@@ -16,5 +16,43 @@
         }, 1000)
 
     </script>
+    <script>
+        // (async () => { console.log(1) } )()
+        let o = {a: 1},
+            b = {a: 2};
+        let j = {
+            a: 1,
+            arrow: () => {
+                console.log( this )
+                this.a
+            }
+        }
+        let s = {
+            a: 2
+        }
+        s.arrow = j.arrow;
+        s.arrow();
+        console.log( s.arrow() )
+        // let arrow = () => this.a;
+        // arrow.call( o )
+
+        // function * a() {
+        //     yield this.a;
+        //     // yield b;
+        //     console.log(this.a)
+        //     let s = yield b
+        //     console.log( s * 10 )
+        // }
+        // var s = a.call( o )
+        // var q = a.call( b )
+        // console.log(s.next(10))
+        // console.log(s.next(10))
+        // console.log(s.next(10))
+        // console.log(s.next())
+        // console.log(s.next())
+        // console.log(s.next())
+        // console.log(q.next())
+        // console.log(q.next())
+    </script>
 </body>
 </html>
