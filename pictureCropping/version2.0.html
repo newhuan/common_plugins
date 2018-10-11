@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .cropper-container{
+            /*display: none;*/
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate( -50%, -50% );
+            width: 400px;
+            height: 400px;
+            background-color: gray;
+        }
+        /*.cropper-container:hover .selected-area{*/
+            /*display: block;*/
+        /*}*/
+        .selected-area{
+            display: none;
+            position: absolute;
+            z-index: 2;
+            background-color: rgba( 0, 0, 0, .5 );
+            width: 0;
+            height: 0;
+        }
+        .cropped-img{
+            user-select: none;
+        }
+        .fillAvatarWithFlex-img-container{
+            display: flex!important;
+            justify-content: center!important;
+            align-items: center!important;
+        }
+        img.horizontal-middle{
+            width: 100%!important;
+            height: auto!important;
+            display: block!important;
+        }
+        img.vertical-middle{
+          height: 100%!important;
+          width: auto!important;
+          display: block!important;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="file-selector">
+    <button id="submit">确定</button>
+    <div class="cropper-container fillAvatarWithFlex-img-container">
+        <img onload="resetSize()" class="cropped-img" id="cropped-img" src="" alt="" title="">
+        <!--http://www.youhuadaquan.org/images/Marc%20Chagall/21489-Chagall,%20Marc.jpg-->
+
+        <div id="selected-area" class="selected-area"></div>
+    </div>
+    <script>
+        let fileName;
+        //select image and preview
+        document.querySelector( '#file-selector' ).addEventListener( 'change', previewImg );
+        function previewImg( e ) {
+            let file = e.target.files[0],
+                reader = new FileReader();
+            reader.onload = function ( e ) {
+                document.querySelector( '#cropped-img' ).src  = this.result;
+            }
+            fileName = file.name;
+            reader.readAsDataURL( file );
+        }
+        let imgMode;
+        let maxTop, maxLeft, minTop, minLeft;
+
+        /**
+         * image onload handler
+         * set select options
+        */
+
+        function resetSize( e ) {
+            let target = (e || window.event).target,
+                className = target.className;
+            className = className.replace(/\svertical-middle|\shorizontal-middle/g, "");
+            let selectedAreaSize;
+            let maxSize = parseInt( document.querySelector( '.cropper-container' ).offsetWidth, 10 );
+            let $selectedArea = document.querySelector( '#selected-area' );
+            if (target.width <= target.height) {
+                className += " vertical-middle";
+                target.className = className;
+                selectedAreaSize = target.width / target.height * maxSize;
+                imgMode = "vertical";
+                minTop = 0;
+                maxTop = maxSize  - selectedAreaSize;
+                $selectedArea.style.top = '0px';
+                $selectedArea.style.left = ( maxTop / 2 ) + 'px';
+            } else {
+                className += " horizontal-middle";
+                target.className = className;
+                selectedAreaSize = target.height / target.width * maxSize;
+                imgMode = "horizontal";
+                minLeft = 0;
+                maxLeft = maxSize  - selectedAreaSize;
+                $selectedArea.style.left = '0px';
+                $selectedArea.style.top = ( maxLeft / 2 ) + 'px';
+            }
+            //set select area size
+            // let $selectedArea = document.querySelector( '#selected-area' );
+            $selectedArea.style.width = selectedAreaSize + "px";
+            $selectedArea.style.height = selectedAreaSize + "px";
+            $selectedArea.style.display = 'block';
+        }
+        let $selectedArea = document.querySelector( '#selected-area' );
+        let canMove = false;
+        $selectedArea.addEventListener( 'mousedown', function ( e ) {
+            canMove = true;
+        } );
+
+        window.addEventListener( 'mouseup', function (  e ) {
+            canMove = false;
+            preTop  = 0;
+            preTop = 0;
+            //todo: set canvas data
+        } );
+        let preTop, preLeft;
+        $selectedArea.addEventListener( 'mousemove', function ( e ) {
+            if ( !canMove || !imgMode ) {
+                return;
+            }
+            let $this = e.target,
+                clientLeft = e.clientX,
+                clientTop = e.clientY;
+            // console.log( clientTop )
+            if ( imgMode === 'vertical' ) {
+                if ( !preTop ) {
+                    preTop = clientTop;
+                }
+                let top = parseInt( $selectedArea.style.top || 0, 10 ) + clientTop - preTop;
+                top = top < minTop ? minTop : top > maxTop ? maxTop : top;
+                preTop = clientTop;
+                $selectedArea.style.top = top + 'px';
+            } else {
+                if ( !preLeft ) {
+                    preLeft = clientLeft;
+                }
+                let left = parseInt( $selectedArea.style.left || 0, 10 ) + clientLeft - preLeft;
+                left = left < minLeft ? minLeft : left > maxLeft ? maxLeft : left;
+                preLeft = clientLeft;
+                $selectedArea.style.left = left + 'px';
+            }
+        } );
+        let $submit = document.querySelector( '#submit' );
+        $submit.addEventListener( 'click', function ( e ) {
+            if ( !imgMode ) {
+                alert( "请先选择图片" );
+            }
+            let $selectedArea = document.querySelector( '#selected-area' );
+            let $image = document.querySelector( '#cropped-img' );
+            let $canvas = document.createElement( 'canvas' ),
+                context = $canvas.getContext( '2d' );
+
+            let src = $image.getAttribute( 'src' ),
+                img = new Image();
+            img.onload = function () {
+                let size = imgMode === 'vertical' ? parseInt( this.width, 10 ) : parseInt( this.height, 10 );
+                $canvas.width = size;
+                $canvas.style.width = size + 'px';
+                $canvas.height = size;
+                $canvas.style.height = size + 'px';
+                let top, left;
+                let params;
+
+                if ( imgMode === 'vertical' ) {
+                    let selectAreaWidth = parseInt( $selectedArea.style.width, 10 );
+                    top = parseInt( $selectedArea.style.top, 10 ) * this.width / selectAreaWidth;
+                    // left = parseInt( $selectedArea.style.left, 10 );
+                    params = [ 0, top, size, size, 0, 0, size, size ]//, 0, top, size, size
+                } else {
+                    let selectAreaHeight = parseInt( $selectedArea.style.height, 10 );
+                    left = parseInt( $selectedArea.style.left, 10 ) * this.height / selectAreaHeight;
+                    //前四个参数表示截取的位置和大小  后四个参数表示渲染的位置和大小
+                    params = [ left, 0, size, size, 0, 0, size, size ];
+                }
+                console.log( params );
+                context.drawImage( img, ...params );
+                let exportSrc = $canvas.toDataURL("image/png"),
+                    file = new File( [dataURLtoBlob( exportSrc ) ], fileName );
+                console.log( file );
+                //todo: upload file
+                // document.body.append( $canvas );
+            }
+            img.src = src;
+        } );
+        function dataURLtoBlob(dataurl) {
+            let arr = dataurl.split(','),
+                mime = arr[0].match(/:(.*?);/)[1],
+                bstr = atob(arr[1]),
+                n = bstr.length,
+                u8arr = new Uint8Array(n);
+            while(n--){
+                u8arr[n] = bstr.charCodeAt(n);
+            }
+            return new Blob([u8arr], {type:mime});
+        }
+    </script>
+</body>
+</html>

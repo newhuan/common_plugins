@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            background-color: gray;
+            cursor: move;
+        }
+
+        .handler {
+            position: absolute;
+        }
+
+        .handler:before {
+            position: absolute;
+            display: block;
+            padding: 4px;
+            transform: translate(-50%, -50%);
+            content: ' ';
+            background: #fff;
+            border: 1px solid #767676;
+        }
+
+        .nw {
+            top: 0;
+            left: 0;
+            cursor: nwse-resize;
+        }
+
+        .ne {
+            top: 0;
+            right: 0;
+            cursor: nesw-resize;
+        }
+
+        .sw {
+            bottom: 0;
+            left: 0;
+            cursor: nesw-resize;
+        }
+
+        .se {
+            bottom: 0;
+            right: 0;
+            cursor: nwse-resize;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="handler nw"></div>
+        <div class="handler ne"></div>
+        <div class="handler sw"></div>
+        <div class="handler se"></div>
+    </div>
+    <script>
+        let $nw = document.querySelector( '.nw' ),
+            $ne = document.querySelector( '.ne' ),
+            $sw = document.querySelector( '.sw' ),
+            $se = document.querySelector( '.se' );
+        let canResize = false;
+        window.addEventListener( 'mouseup', function () {
+            canResize = false;
+        } )
+        $nw.addEventListener( 'mousedown', function ( e ) {
+
+        } );
+        $nw.addEventListener( 'move', function ( e ) {
+
+        } );
+    </script>
+</body>
+</html>
